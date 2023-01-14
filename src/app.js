@@ -5,6 +5,8 @@ const db = require("./utils/database");
 const initModels = require('./models/init.models');
 const Users = require('./models/users.model');
 const Todos = require('./models/todos.model');
+const userRoutes = require('./routes/users.routes');
+const todosRoutes = require("./routes/todos.routes");
 
 //crear instancia de express
 
@@ -31,6 +33,10 @@ app.get('/', (req, res) => {
   res.status(200).json({message : "Bienvenido al servidor"})
 });
 
+app.use("/api/v1", userRoutes);
+app.use("/api/v1", todosRoutes);
+
+
 //definir rutas de los endpoints ep
 
 //para todas las consultas de usuarios 
@@ -38,7 +44,7 @@ app.get('/', (req, res) => {
 //localhost:8000/todos
 
 //GET a /users
-
+/*
 app.get('/users', async (req, res)=> {
   try {
     //obtener el resultado de consultar todos los users de la base de datos
@@ -174,7 +180,7 @@ app.delete('/todos/:id', async (req, res)=> {
   } catch (error) {
     res.status(400).json(error.message);
   }
-})
+}) */
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en ${PORT}`);
